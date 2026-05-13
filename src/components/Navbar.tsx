@@ -61,7 +61,7 @@ export default function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 bg-[#fafafa] z-40 flex flex-col items-start justify-center gap-6 px-10">
+        <div className="md:hidden fixed inset-0 bg-[#fafafa] z-50 flex flex-col items-start justify-center gap-6 px-10">
           <button
             className="absolute top-4 right-6 text-zinc-700"
             onClick={() => setMenuOpen(false)}
