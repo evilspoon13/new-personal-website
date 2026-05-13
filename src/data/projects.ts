@@ -48,6 +48,7 @@ export const projects: Project[] = [
       { label: "Source", url: "https://github.com/evilspoon13/aggie-finals" },
     ],
   },
+  
   {
     title: "Aggie Study",
     description:
