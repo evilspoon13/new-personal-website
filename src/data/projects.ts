@@ -1,6 +1,6 @@
 import type { Project } from "../types";
 
-export const projects: Project[] = [
+export const formulaProjects: Project[] = [
   {
     title: "DBMS",
     description:
@@ -21,12 +21,12 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "Constellation",
+    title: "PitLink",
     description:
-      "1st place, Compute & Cloud Challenge at TAMUhack 2026. An AI-native IDE for HPC that replaces terminal workflows with a visual execution graph and natural language interface for parallel workloads on AWS Batch.",
-    techStack: ["Next.js", "TypeScript", "React", "AWS Batch", "EC2", "S3", "Gemini", "Firebase"],
+      "Custom CAN-to-Ethernet bridge board built to replace the Raspberry Pi in the pit. An STM32 reads dual CAN buses and broadcasts frames over TCP to multiple clients via a W5500 Ethernet controller, with bidirectional forwarding for pit-side commands.",
+    techStack: ["C", "STM32", "CAN", "SPI", "TCP"],
     githubUrls: [
-      { label: "Source", url: "https://github.com/aathul-raj/constellation" },
+      { label: "Firmware", url: "https://github.com/tamuev/PitLink" },
     ],
   },
   {
@@ -39,6 +39,18 @@ export const projects: Project[] = [
       { label: "Web", url: "https://github.com/evilspoon13/track-web" },
     ],
   },
+];
+
+export const personalProjects: Project[] = [
+  {
+    title: "Constellation",
+    description:
+      "1st place, Compute & Cloud Challenge at TAMUhack 2026. An AI-native IDE for HPC that replaces terminal workflows with a visual execution graph and natural language interface for parallel workloads on AWS Batch.",
+    techStack: ["Next.js", "TypeScript", "React", "AWS Batch", "EC2", "S3", "Gemini", "Firebase"],
+    githubUrls: [
+      { label: "Source", url: "https://github.com/aathul-raj/constellation" },
+    ],
+  },
   {
     title: "Aggie Finals",
     description:
@@ -48,7 +60,6 @@ export const projects: Project[] = [
       { label: "Source", url: "https://github.com/evilspoon13/aggie-finals" },
     ],
   },
-  
   {
     title: "Aggie Study",
     description:

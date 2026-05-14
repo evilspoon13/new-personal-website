@@ -6,6 +6,7 @@ export interface ExperienceEntry {
   summary: string;
   techStack: string[];
   logo?: string;
+  link?: { label: string; href: string };
 }
 
 export interface Project {

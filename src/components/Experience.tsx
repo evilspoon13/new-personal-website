@@ -15,7 +15,7 @@ export default function Experience() {
                 <img
                   src={entry.logo}
                   alt={entry.company}
-                  className="w-14 h-14 object-contain shrink-0 mt-1 rounded-md bg-white p-1 shadow-sm opacity-0 animate-[fade-in_0.5s_ease-out_forwards]"
+                  className="w-14 h-14 object-contain shrink-0 mt-1 rounded-md bg-white p-1 shadow-sm grayscale opacity-0 animate-[fade-in_0.5s_ease-out_forwards]"
                 />
               ) : (
                 <div className="w-14 h-14 shrink-0 mt-1 border border-border flex items-center justify-center text-base text-muted">
@@ -36,6 +36,14 @@ export default function Experience() {
                 <p className="text-base text-muted">
                   {entry.techStack.join(" · ")}
                 </p>
+                {entry.link && (
+                  <a
+                    href={entry.link.href}
+                    className="inline-block mt-3 text-sm font-medium text-zinc-900 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-900 transition-colors"
+                  >
+                    {entry.link.label}
+                  </a>
+                )}
               </div>
             </div>
           ))}

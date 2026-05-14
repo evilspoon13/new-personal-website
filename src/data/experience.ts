@@ -20,6 +20,7 @@ export const experience: ExperienceEntry[] = [
     summary:
       "Building embedded software for the electric race car. Worked on the distributed battery management system, the live telemetry system RoadLink, and other vehicle firmware.",
     techStack: ["C", "C++", "STM32", "CAN", "UART", "SPI"],
+    link: { label: "View projects →", href: "#formula-sae" },
   },
   {
     company: "RoviSys",
