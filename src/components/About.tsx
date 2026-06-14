@@ -20,11 +20,25 @@ function GithubIcon(props: LucideProps) {
   );
 }
 
-// TODO: Replace with your actual URLs
 const LINKS: { icon: ComponentType<LucideProps>; label: string; href: string }[] = [
   { icon: Mail, label: "Email", href: "mailto:camstone63@gmail.com" },
   { icon: LinkedinIcon, label: "LinkedIn", href: "https://linkedin.com/in/cameronwstone" },
   { icon: GithubIcon, label: "GitHub", href: "https://github.com/evilspoon13" },
+];
+
+const COUNTRIES: { name: string; flag: string }[] = [
+  { name: "France", flag: "🇫🇷" },
+  { name: "Belgium", flag: "🇧🇪" },
+  { name: "Netherlands", flag: "🇳🇱" },
+  { name: "Spain", flag: "🇪🇸" },
+  { name: "UK", flag: "🇬🇧" },
+  { name: "Monaco", flag: "🇲🇨" },
+  { name: "Italy", flag: "🇮🇹" },
+  { name: "Mexico", flag: "🇲🇽" },
+  { name: "Canada", flag: "🇨🇦" },
+  { name: "Japan", flag: "🇯🇵" },
+  { name: "Peru", flag: "🇵🇪" },
+  { name: "Guatemala", flag: "🇬🇹" },
 ];
 
 export default function About() {
@@ -42,18 +56,33 @@ export default function About() {
 
         <div className="space-y-4 text-zinc-600 mb-10">
           <p>
-            I'm a software engineer interested in low-level programming, embedded
-            systems, and building things close to the hardware. Most of my work
-            lives in C/C++, but I'm equally comfortable across the full stack.
+            I'm a software engineer interested in low-level development, embedded
+            systems, and building things close to hardware. I like working on problems
+            where performance and correctness matter, mostly in C/C++. I also have
+            experience with full-stack development and AI applications. Outside of work,
+            I enjoy training Brazilian Jiu-Jitsu and traveling.
           </p>
           <p>
-            I like working on problems where performance and correctness matter.
-            Real-time telemetry, firmware, distributed systems, and the
-            infrastructure underneath.
+            Feel free to reach out if you're interested in my experience!
           </p>
-          <p>
-            Feel free to reach out if you're interested in my experience.
-          </p>
+        </div>
+
+        <div className="mb-10">
+          <h2 className="text-sm font-medium uppercase tracking-wide text-muted mb-3">
+            Places I've been
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {COUNTRIES.map(({ name, flag }) => (
+              <span
+                key={name}
+                className="inline-flex items-center gap-1.5 rounded-full border border-border
+                           px-3 py-1 text-sm text-zinc-600"
+              >
+                <span aria-hidden="true">{flag}</span>
+                {name}
+              </span>
+            ))}
+          </div>
         </div>
 
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">

@@ -31,37 +31,39 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#fafafa]/90 backdrop-blur-sm">
-      <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-        <div />
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#fafafa]/90 backdrop-blur-sm">
+        <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
+          <div />
 
-        <div className="hidden md:flex gap-8">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`text-sm transition-colors ${
-                activeSection === link.href.slice(1)
-                  ? "text-zinc-900"
-                  : "text-muted hover:text-zinc-900"
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+          <div className="hidden md:flex gap-8">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`text-sm transition-colors ${
+                  activeSection === link.href.slice(1)
+                    ? "text-zinc-900"
+                    : "text-muted hover:text-zinc-900"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <button
+            className="md:hidden text-zinc-700"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
-
-        <button
-          className="md:hidden text-zinc-700"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </div>
+      </nav>
 
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 z-[60] bg-[#fafafa] flex flex-col items-start justify-center gap-6 px-10 overflow-hidden">
+        <div className="md:hidden fixed inset-0 z-[60] bg-[#fafafa] flex flex-col items-start justify-center gap-6 px-10">
           <button
             className="absolute top-4 right-6 text-zinc-700"
             onClick={() => setMenuOpen(false)}
@@ -81,6 +83,6 @@ export default function Navbar() {
           ))}
         </div>
       )}
-    </nav>
+    </>
   );
 }
