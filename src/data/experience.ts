@@ -4,7 +4,7 @@ export const experience: ExperienceEntry[] = [
   {
     company: "T-Mobile",
     role: "Software Engineer",
-    location: "Bellevue, WA",
+    location: "Bellevue, WA / Remote",
     dateRange: "Aug 2025 – Present",
     logo: "/logos/tmobile.webp",
     summary:
