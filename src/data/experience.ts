@@ -5,7 +5,7 @@ export const experience: ExperienceEntry[] = [
     company: "T-Mobile",
     role: "Software Engineer",
     location: "Bellevue, WA / Remote",
-    dateRange: "Aug 2025 – Present",
+    dateRange: "May 2025 – Present",
     logo: "/logos/tmobile.webp",
     summary:
       "Started on the Legal Technology team, building a platform to streamline communication between T-Mobile legal agents and law enforcement. Now on Helix, helping solve customer issues proactively using aggregated T-Mobile data and LLMs.",
