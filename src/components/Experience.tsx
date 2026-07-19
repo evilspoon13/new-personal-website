@@ -33,9 +33,11 @@ export default function Experience() {
                 <p className="text-lg text-zinc-600 leading-relaxed mb-2">
                   {entry.summary}
                 </p>
-                <p className="text-base text-muted">
-                  {entry.techStack.join(" · ")}
-                </p>
+                {entry.techStack.length > 0 && (
+                  <p className="text-base text-muted">
+                    {entry.techStack.join(" · ")}
+                  </p>
+                )}
                 {entry.link && (
                   <a
                     href={entry.link.href}

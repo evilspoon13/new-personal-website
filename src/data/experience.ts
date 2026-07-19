@@ -2,10 +2,19 @@ import type { ExperienceEntry } from "../types";
 
 export const experience: ExperienceEntry[] = [
   {
+    company: "Qualcomm",
+    role: "Software Engineer",
+    location: "San Diego, CA",
+    dateRange: "Jun 2026 – Present",
+    logo: "/logos/qualcomm.png",
+    summary: "Qualcomm Government Technologies (QGOV).",
+    techStack: [],
+  },
+  {
     company: "T-Mobile",
     role: "Software Engineer",
     location: "Bellevue, WA / Remote",
-    dateRange: "May 2025 – Present",
+    dateRange: "May 2025 – Jun 2026",
     logo: "/logos/tmobile.webp",
     summary:
       "Started on the Legal Technology team, building a platform to streamline communication between T-Mobile legal agents and law enforcement. Now on Helix, helping solve customer issues proactively using aggregated T-Mobile data and LLMs.",

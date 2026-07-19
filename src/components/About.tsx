@@ -51,7 +51,7 @@ export default function About() {
 
         <p className="text-lg text-muted mb-8">
           Software Engineer at{" "}
-          <span className="text-zinc-900">T-Mobile</span>
+          <span className="text-zinc-900">Qualcomm</span>
         </p>
 
         <div className="space-y-4 text-zinc-600 mb-10">
