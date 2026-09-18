@@ -79,8 +79,7 @@ export default function About() {
             <p>
               I'm a software engineer interested in low-level development, embedded
               systems, and building things close to hardware. I like working on problems
-              where performance and correctness matter, mostly in C/C++. I also have
-              experience with full-stack development and AI applications. Outside of work,
+              where performance and correctness matter, mostly in C/C++. Outside of work,
               I enjoy training Brazilian Jiu-Jitsu and traveling.
             </p>
             <p>Feel free to reach out if you're interested in my experience!</p>
