@@ -17,7 +17,7 @@ export const experience: ExperienceEntry[] = [
     dateRange: "May 2025 – Jun 2026",
     logo: "/logos/tmobile.webp",
     summary:
-      "Started on the Legal Technology team, building a platform to streamline communication between T-Mobile legal agents and law enforcement. Now on Helix, helping solve customer issues proactively using aggregated T-Mobile data and LLMs.",
+      "Started on the Legal Technology team, building a platform that streamlined communication between T-Mobile legal agents and law enforcement. I also worked on Helix, working on an app to resolve customer issues proactively using aggregated T-Mobile data and LLMs.",
     techStack: ["Java", "Spring Boot", "React", "Angular", "TypeScript", "Kafka", "RabbitMQ", "Kubernetes"],
   },
   {
