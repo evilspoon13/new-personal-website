@@ -1,6 +1,8 @@
 import { ExternalLink } from "lucide-react";
 import { formulaProjects, personalProjects } from "../data/projects";
 import type { Project } from "../types";
+import Section from "./Section";
+import Reveal from "./Reveal";
 
 function GithubIcon({ size = 24 }: { size?: number }) {
   return (
@@ -13,55 +15,75 @@ function GithubIcon({ size = 24 }: { size?: number }) {
 
 function ProjectList({ projects }: { projects: Project[] }) {
   return (
-    <div className="space-y-10">
+    <div className="space-y-2">
       {projects.map((project, i) => (
-        <div key={i} className="group">
-          <div className="flex items-baseline justify-between gap-4 mb-1">
-            <h3 className="text-xl font-medium text-zinc-900">{project.title}</h3>
-            <div className="flex gap-4 shrink-0 items-center">
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted hover:text-zinc-900 transition-colors"
-                  aria-label="Source code"
+        <Reveal key={project.title} index={i}>
+          <div
+            className="group relative -mx-4 px-4 py-4 rounded-lg transition-colors
+                       hover:bg-zinc-900/[0.025]"
+          >
+            {/* left marker that grows in on hover */}
+            <span
+              className="absolute left-0 top-5 bottom-5 w-px bg-zinc-900 origin-center
+                         scale-y-0 opacity-0 transition-all duration-300
+                         group-hover:scale-y-100 group-hover:opacity-100"
+              aria-hidden="true"
+            />
+
+            <div className="flex items-baseline justify-between gap-4 mb-1">
+              <h4 className="text-xl font-medium text-zinc-900">{project.title}</h4>
+              <div className="flex gap-4 shrink-0 items-center">
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-faint hover:text-zinc-900 transition-colors"
+                    aria-label={`${project.title} source code`}
+                  >
+                    <GithubIcon size={20} />
+                  </a>
+                )}
+                {project.githubUrls?.map((repo) => (
+                  <a
+                    key={repo.label}
+                    href={repo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm text-faint hover:text-zinc-900 transition-colors"
+                  >
+                    <GithubIcon size={16} />
+                    {repo.label}
+                  </a>
+                ))}
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-faint hover:text-zinc-900 transition-colors"
+                    aria-label={`${project.title} live demo`}
+                  >
+                    <ExternalLink size={20} />
+                  </a>
+                )}
+              </div>
+            </div>
+
+            <p className="text-base text-zinc-600 mb-3 max-w-2xl">{project.description}</p>
+
+            <div className="flex flex-wrap gap-1.5">
+              {project.techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-md bg-white ring-1 ring-border px-2 py-0.5 text-xs text-muted"
                 >
-                  <GithubIcon size={20} />
-                </a>
-              )}
-              {project.githubUrls?.map((repo) => (
-                <a
-                  key={repo.label}
-                  href={repo.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-zinc-900 transition-colors"
-                >
-                  <GithubIcon size={16} />
-                  {repo.label}
-                </a>
+                  {tech}
+                </span>
               ))}
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted hover:text-zinc-900 transition-colors"
-                  aria-label="Live demo"
-                >
-                  <ExternalLink size={20} />
-                </a>
-              )}
             </div>
           </div>
-
-          <p className="text-lg text-zinc-600 mb-2">{project.description}</p>
-
-          <p className="text-base text-muted">
-            {project.techStack.join(" · ")}
-          </p>
-        </div>
+        </Reveal>
       ))}
     </div>
   );
@@ -69,26 +91,20 @@ function ProjectList({ projects }: { projects: Project[] }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-16 px-6">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="font-serif text-4xl font-medium text-zinc-900 mb-12">
-          Projects
-        </h2>
-
-        <div id="formula-sae" className="mb-16">
-          <h3 className="font-serif text-2xl font-medium text-zinc-900 mb-8">
-            Formula SAE Electric
-          </h3>
-          <ProjectList projects={formulaProjects} />
-        </div>
-
-        <div>
-          <h3 className="font-serif text-2xl font-medium text-zinc-900 mb-8">
-            Personal
-          </h3>
-          <ProjectList projects={personalProjects} />
-        </div>
+    <Section id="projects" title="Projects">
+      <div id="formula-sae" className="mb-16 scroll-mt-24">
+        <Reveal as="h3" className="font-serif text-2xl font-medium text-zinc-900 mb-6">
+          Formula SAE Electric
+        </Reveal>
+        <ProjectList projects={formulaProjects} />
       </div>
-    </section>
+
+      <div>
+        <Reveal as="h3" className="font-serif text-2xl font-medium text-zinc-900 mb-6">
+          Personal
+        </Reveal>
+        <ProjectList projects={personalProjects} />
+      </div>
+    </Section>
   );
 }

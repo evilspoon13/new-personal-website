@@ -1,5 +1,7 @@
 import { Mail, type LucideProps } from "lucide-react";
-import type { ComponentType } from "react";
+import { useEffect, useState } from "react";
+import type { ComponentType, CSSProperties, ReactNode } from "react";
+import DotField from "./DotField";
 
 function LinkedinIcon(props: LucideProps) {
   return (
@@ -26,80 +28,82 @@ const LINKS: { icon: ComponentType<LucideProps>; label: string; href: string }[]
   { icon: GithubIcon, label: "GitHub", href: "https://github.com/evilspoon13" },
 ];
 
-const COUNTRIES: { name: string; flag: string }[] = [
-  { name: "France", flag: "🇫🇷" },
-  { name: "Belgium", flag: "🇧🇪" },
-  { name: "Netherlands", flag: "🇳🇱" },
-  { name: "Spain", flag: "🇪🇸" },
-  { name: "UK", flag: "🇬🇧" },
-  { name: "Monaco", flag: "🇲🇨" },
-  { name: "Italy", flag: "🇮🇹" },
-  { name: "Mexico", flag: "🇲🇽" },
-  { name: "Canada", flag: "🇨🇦" },
-  { name: "Japan", flag: "🇯🇵" },
-  { name: "Peru", flag: "🇵🇪" },
-  { name: "Guatemala", flag: "🇬🇹" },
-];
+/** Hero content animates on load rather than on scroll — it is already in view. */
+function Enter({ delay, children }: { delay: number; children: ReactNode }) {
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setShown(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  return (
+    <div
+      className="reveal"
+      data-shown={shown}
+      style={{ "--reveal-delay": `${delay}ms` } as CSSProperties}
+    >
+      {children}
+    </div>
+  );
+}
 
 export default function About() {
   return (
-    <section id="about" className="pt-28 pb-16 px-6">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="font-serif text-4xl md:text-5xl font-medium text-zinc-900 mb-4 leading-tight">
-          Cameron Stone
-        </h1>
+    <section id="about" className="relative pt-28 pb-16 px-6 scroll-mt-20">
+      <div className="absolute inset-x-0 top-0 h-[520px] overflow-hidden" aria-hidden="true">
+        <DotField />
+      </div>
 
-        <p className="text-lg text-muted mb-8">
-          Software Engineer at{" "}
-          <span className="text-zinc-900">Qualcomm</span>
-        </p>
+      <div className="relative max-w-4xl mx-auto">
+        <Enter delay={60}>
+          <h1 className="font-serif text-4xl md:text-5xl font-medium text-zinc-900 mb-4 leading-tight">
+            Cameron Stone
+          </h1>
+        </Enter>
 
-        <div className="space-y-4 text-zinc-600 mb-10">
-          <p>
-            I'm a software engineer interested in low-level development, embedded
-            systems, and building things close to hardware. I like working on problems
-            where performance and correctness matter, mostly in C/C++. I also have
-            experience with full-stack development and AI applications. Outside of work,
-            I enjoy training Brazilian Jiu-Jitsu and traveling.
+        <Enter delay={140}>
+          <p className="text-lg text-muted mb-8 flex items-center gap-2">
+            <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-zinc-400 opacity-60 motion-safe:animate-ping" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-zinc-500" />
+            </span>
+            Software Engineer at <span className="text-zinc-900">Qualcomm</span>
+            <span className="text-faint">·</span>
+            <span className="text-faint">San Diego</span>
           </p>
-          <p>
-            Feel free to reach out if you're interested in my experience!
-          </p>
-        </div>
+        </Enter>
 
-        <div className="mb-10">
-          <h2 className="text-sm font-medium uppercase tracking-wide text-muted mb-3">
-            Places I've been
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {COUNTRIES.map(({ name, flag }) => (
-              <span
-                key={name}
-                className="inline-flex items-center gap-1.5 rounded-full border border-border
-                           px-3 py-1 text-sm text-zinc-600"
+        <Enter delay={220}>
+          <div className="space-y-4 text-zinc-600 mb-10 max-w-2xl">
+            <p>
+              I'm a software engineer interested in low-level development, embedded
+              systems, and building things close to hardware. I like working on problems
+              where performance and correctness matter, mostly in C/C++. I also have
+              experience with full-stack development and AI applications. Outside of work,
+              I enjoy training Brazilian Jiu-Jitsu and traveling.
+            </p>
+            <p>Feel free to reach out if you're interested in my experience!</p>
+          </div>
+        </Enter>
+
+        <Enter delay={300}>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            {LINKS.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="group inline-flex items-center gap-1.5 text-muted hover:text-zinc-900 transition-colors
+                           underline decoration-border underline-offset-4 hover:decoration-zinc-900"
               >
-                <span aria-hidden="true">{flag}</span>
-                {name}
-              </span>
+                <Icon size={14} />
+                {label}
+              </a>
             ))}
           </div>
-        </div>
-
-        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-          {LINKS.map(({ icon: Icon, label, href }) => (
-            <a
-              key={label}
-              href={href}
-              target={href.startsWith("http") ? "_blank" : undefined}
-              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="inline-flex items-center gap-1.5 text-muted hover:text-zinc-900 transition-colors
-                         underline decoration-border underline-offset-4 hover:decoration-zinc-900"
-            >
-              <Icon size={14} />
-              {label}
-            </a>
-          ))}
-        </div>
+        </Enter>
       </div>
     </section>
   );
